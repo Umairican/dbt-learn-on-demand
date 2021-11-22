@@ -3,7 +3,7 @@ select
     orderid as order_id,
     paymentmethod as payment_method,
     status,
-    amount / 100 as amount,
+    amount / 100 as amount, --amount is stored as cents, convert it to dollars
     created as created_at
 
-from dbt-tutorial.stripe.payment
+from {{ source('stripe', 'payment') }}
